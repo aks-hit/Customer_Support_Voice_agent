@@ -39,6 +39,10 @@ flowchart TB
     E --> F[Text to Speech - Deepgram]
     F --> G[Customer Hears Response via Twilio]
 
+## Project Structure
+
+```mermaid
+flowchart TB
 📂 Voice-Agent
 ├── main.py              # Core WebSocket server (Deepgram ↔ Twilio integration, agent logic)
 ├── complaints_db.py     # SQLite DB schema + function mappings
@@ -46,6 +50,7 @@ flowchart TB
 ├── app.py               # (Optional) Streamlit web interface
 ├── requirements.txt     # Python dependencies
 └── README.md            # Documentation
+
 
 
 
