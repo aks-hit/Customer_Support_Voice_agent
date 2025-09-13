@@ -1,2 +1,2 @@
-Complaint ID,Category,Description,Status,Created At
-1,Damaged product,Received a damaged product which is torn.,Open,2025-09-13 16:46:00
+Complaint ID,Category,Description,Status,Created At,Sentiment
+1,damaged item,Received a damaged product.,Open,2025-09-13 20:19:28,neutral
