@@ -1,0 +1,140 @@
+{
+  "type": "Settings",
+  "audio": {
+    "input": {
+      "encoding": "mulaw",
+      "sample_rate": 8000
+    },
+    "output": {
+      "encoding": "mulaw",
+      "sample_rate": 8000,
+      "container": "none"
+    }
+  },
+  "agent": {
+    "language": "en",
+    "listen": {
+      "provider": {
+        "type": "deepgram",
+        "model": "nova-3",
+        "keyterms": [
+          "complaint", "status", "history", "help", "hello",
+          "escalate", "report", "sentiment",
+          "शिकायत", "स्थिति", "इतिहास", "रिपोर्ट", "बढ़ाना"
+        ]
+      }
+    },
+    "think": {
+      "provider": {
+        "type": "open_ai",
+        "model": "gpt-4o-mini",
+        "temperature": 0.7
+      },
+      "prompt": "You are a professional customer support voice agent for a service company. Your responsibilities: 1) Book complaints with book_complaint, 2) Check complaint status with check_status, 3) Look up customer history with get_customer_history, 4) Escalate issues with escalate_complaint, 5) Export reports with export_report, 6) Analyze sentiment with analyze_sentiment, 7) Log all interactions with log_interaction, and 8) Provide insights on complaints using get_complaints_by_sentiment. Always collect customer details (name, phone/email) clearly, confirm complaint details before registering, and provide status updates politely. If the user speaks in Hindi, translate internally to English for processing but respond in the same language they used. Detect user sentiment and adjust tone (empathetic if frustrated, cheerful if satisfied). Always confirm IDs, names, and complaint details before finalizing any action.",
+      "functions": [
+        {
+          "name": "book_complaint",
+          "description": "Register a new complaint for a customer.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "customer_name": { "type": "string", "description": "Full name of the customer." },
+              "contact": { "type": "string", "description": "Phone number or email of the customer." },
+              "category": { "type": "string", "description": "Complaint category (e.g., product issue, service delay, damaged item)." },
+              "description": { "type": "string", "description": "Detailed description of the complaint." }
+            },
+            "required": ["customer_name", "category", "description"]
+          }
+        },
+        {
+          "name": "check_status",
+          "description": "Check the status of a complaint using complaint ID.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "complaint_id": { "type": "integer", "description": "Complaint ID number." }
+            },
+            "required": ["complaint_id"]
+          }
+        },
+        {
+          "name": "get_customer_history",
+          "description": "Retrieve all complaints and interactions of a customer.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "customer_name": { "type": "string", "description": "Full name of the customer." }
+            },
+            "required": ["customer_name"]
+          }
+        },
+        {
+          "name": "escalate_complaint",
+          "description": "Escalate a complaint to higher support if unresolved.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "complaint_id": { "type": "integer", "description": "The complaint ID to escalate." },
+              "reason": { "type": "string", "description": "Reason for escalation (e.g., unresolved, repeated issue, urgent case)." }
+            },
+            "required": ["complaint_id", "reason"]
+          }
+        },
+        {
+          "name": "export_report",
+          "description": "Export complaint history and interactions to CSV for analysis.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "customer_name": { "type": "string", "description": "Customer name to export history for." }
+            },
+            "required": ["customer_name"]
+          }
+        },
+        {
+          "name": "analyze_sentiment",
+          "description": "Analyze sentiment of a message or complaint description.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string", "description": "The text to analyze." }
+            },
+            "required": ["text"]
+          }
+        },
+        {
+          "name": "log_interaction",
+          "description": "Log a conversation message (from user or agent) into the interactions table.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "customer_id": { "type": "integer", "description": "Customer ID linked to this message (nullable)." },
+              "complaint_id": { "type": "integer", "description": "Complaint ID linked to this message (nullable)." },
+              "message": { "type": "string", "description": "The conversation text." },
+              "sender": { "type": "string", "enum": ["user", "agent"], "description": "Who sent the message." }
+            },
+            "required": ["message", "sender"]
+          }
+        },
+        {
+          "name": "get_complaints_by_sentiment",
+          "description": "Retrieve complaints filtered by sentiment (positive, neutral, negative).",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "sentiment": { "type": "string", "enum": ["positive", "neutral", "negative"], "description": "Sentiment category to filter complaints." }
+            },
+            "required": ["sentiment"]
+          }
+        }
+      ]
+    },
+    "speak": {
+      "provider": {
+        "type": "deepgram",
+        "model": "aura-2-thalia-en"
+      }
+    },
+    "greeting": "Hello! I'm your customer support assistant. I can help you book complaints, check status, review history, escalate issues, analyze sentiment, and export reports. आप हिंदी या अंग्रेज़ी में बात कर सकते हैं। How can I assist you today?"
+  }
+}
