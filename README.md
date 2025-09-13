@@ -32,9 +32,10 @@ It can handle **complaint booking, tracking, escalation, reporting, sentiment an
 
 ```mermaid
 flowchart TB
-    A[📞 Incoming Call<br>(Twilio)] --> B[📝 Speech-to-Text<br>(Deepgram)]
-    B --> C[🤖 NLP & Agent Logic<br>(OpenAI Model)]
-    C --> D[⚡ Function Calls]
-    D --> E[(🗄️ SQLite Database)]
-    E --> F[🔊 Text-to-Speech<br>(Deepgram)]
-    F --> G[👂 Customer Hears Response<br>(Twilio)]
+    A[Incoming Call (Twilio)] --> B[Speech-to-Text (Deepgram)]
+    B --> C[NLP & Agent Logic (OpenAI Model)]
+    C --> D[Function Calls]
+    D --> E[(SQLite Database)]
+    E --> F[Text-to-Speech (Deepgram)]
+    F --> G[Customer Hears Response (Twilio)]
+
