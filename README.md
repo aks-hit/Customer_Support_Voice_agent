@@ -44,11 +44,11 @@ flowchart TB
 ```mermaid
 flowchart TD
     A[Voice-Agent] --> B[main.py]
-    A --> C[complaints_db.py]
-    A --> D[config.json]
-    A --> F[reports/]
+    B --> C[complaints_db.py]
+    C --> D[config.json]
+    D --> F[reports/]
     F --> F1[CSV Reports]
-    A --> H[.env]
+    F --> H[.env]
 ```
 
 ---
@@ -63,6 +63,7 @@ flowchart TD
 - **Ngrok** → Expose local server to the internet for Twilio webhook  
 
 ---
+
 
 
 
