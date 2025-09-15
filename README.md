@@ -6,13 +6,12 @@ It can handle **complaint booking, tracking, escalation, reporting, sentiment an
 ---
 
 ## 🚀 Features
-- Voice-based customer support with real-time telephony  
-- Complaint booking, tracking, escalation, and reporting  
-- Persistent storage with **SQLite** (customers, complaints, interactions, metrics)  
-- Sentiment analysis on customer messages  
-- Multi-language support (English & Hindi)  
-- Export complaints to CSV reports  
-- Web dashboard (Streamlit prototype)  
+- 📞 Voice-based customer support with real-time telephony  
+- 📝 Complaint booking, tracking, escalation, and reporting  
+- 🗂️ Persistent storage with **SQLite** (customers, complaints, interactions, metrics)  
+- 😊 Sentiment analysis on customer messages  
+- 🌐 Multi-language support (English & Hindi)  
+- 📊 Export complaints to CSV reports   
 
 ---
 
@@ -38,20 +37,30 @@ flowchart TB
     D --> E[SQLite Database]
     E --> F[Text to Speech - Deepgram]
     F --> G[Customer Hears Response via Twilio]
-
----
+```
 
 ## 🏗️ Project Structure
 Voice-Agent/
 │── main.py # Main entrypoint (Twilio + Deepgram event handling)
 │── complaints_db.py # Database models, functions, and sentiment analysis
 │── config.json # Agent configuration (STT, TTS, OpenAI functions)
-│── app.py # Streamlit web interface
 │── reports/ # Auto-generated complaint reports (CSV)
-│── requirements.txt # Python dependencies
 │── .env # API keys (Deepgram, Twilio, OpenAI)
 
+---
 
+---
+
+## ⚙️ Tech Stack
+
+- **Deepgram** → Speech-to-Text (STT) + Text-to-Speech (TTS)  
+- **Twilio** → Telephony & WebSocket integration  
+- **OpenAI (GPT-4o-mini)** → Natural language understanding + function calling  
+- **SQLite** → Persistent storage of complaints, customers, interactions, metrics  
+- **TextBlob** → Sentiment analysis    
+- **Ngrok** → Expose local server to the internet for Twilio webhook  
+
+---
 
 
 
