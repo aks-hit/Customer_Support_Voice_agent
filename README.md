@@ -44,11 +44,11 @@ flowchart TB
 ```mermaid
 flowchart TD
     A[Voice-Agent] --> B[main.py]
-    B --> C[complaints_db.py]
-    C --> D[config.json]
-    D --> F[reports/]
+    A --> C[complaints_db.py]
+    A--> D[config.json]
+    A --> F[reports/]
     F --> F1[CSV Reports]
-    F --> H[.env]
+    A --> H[.env]
 ```
 
 ---
