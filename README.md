@@ -39,8 +39,17 @@ flowchart TB
     E --> F[Text to Speech - Deepgram]
     F --> G[Customer Hears Response via Twilio]
 
+---
 
-
+## 🏗️ Project Structure
+Voice-Agent/
+│── main.py # Main entrypoint (Twilio + Deepgram event handling)
+│── complaints_db.py # Database models, functions, and sentiment analysis
+│── config.json # Agent configuration (STT, TTS, OpenAI functions)
+│── app.py # Streamlit web interface
+│── reports/ # Auto-generated complaint reports (CSV)
+│── requirements.txt # Python dependencies
+│── .env # API keys (Deepgram, Twilio, OpenAI)
 
 
 
