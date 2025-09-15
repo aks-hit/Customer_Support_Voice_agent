@@ -40,14 +40,16 @@ flowchart TB
 ```
 
 ## 🏗️ Project Structure
-Voice-Agent/
-│── main.py # Main entrypoint (Twilio + Deepgram event handling)
-│── complaints_db.py # Database models, functions, and sentiment analysis
-│── config.json # Agent configuration (STT, TTS, OpenAI functions)
-│── reports/ # Auto-generated complaint reports (CSV)
-│── .env # API keys (Deepgram, Twilio, OpenAI)
 
----
+```mermaid
+flowchart TD
+    A[Voice-Agent] --> B[main.py]
+    A --> C[complaints_db.py]
+    A --> D[config.json]
+    A --> F[reports/]
+    F --> F1[CSV Reports]
+    A --> H[.env]
+```
 
 ---
 
@@ -61,6 +63,7 @@ Voice-Agent/
 - **Ngrok** → Expose local server to the internet for Twilio webhook  
 
 ---
+
 
 
 
